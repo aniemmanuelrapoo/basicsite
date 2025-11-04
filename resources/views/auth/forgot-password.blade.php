@@ -39,9 +39,17 @@
                                     <div class="pt-0">
                                         <form method="POST" action="{{ route('password.email') }}" class="my-4">
                                             @csrf
+                                            @if (session('error'))
+                                                <div class="alert alert-danger">
+                                                    {{ session('error') }}
+                                                </div>
+                                            @endif
                                             <div class="form-group mb-3">
                                                 <label for="emailaddress" class="form-label">Email address</label>
                                                 <input class="form-control" name="email" type="email" id="email" required="" placeholder="Enter your email">
+                                                @error('email')
+                                                    <small class="text-danger">{{ $message }}</small>
+                                                @enderror
                                             </div>
                                             
                                             <div class="form-group mb-0 row">
